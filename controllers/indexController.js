@@ -20,9 +20,9 @@ const registerUser = [validateUser, async (req,res) => {
         errors: errors.array(),
       });
     }
-    const { firstName, lastName, userName, password, confirmPassword} = matchedData(req);
+    const {firstName, lastName, userName, password} = matchedData(req);
     const hashedPassword = await bcrypt.hash(password, 10);
-    //usersStorage.addUser({ firstName, lastName });
+    await db.registerUser(firstName, lastName, userName, hashedPassword);
     res.redirect("/");
 
 }];
