@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/alemay04/members-only-website#readme",
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "ejs": "^7.0.2",
     "express": "^5.3.0",
     "express-validator": "^7.3.2",

@@ -1,5 +1,7 @@
 const { body, validationResult, matchedData } = require("express-validator");
 const {validateUser} = require("../controllers/validationCriterias/signUpValidator");
+const bcrypt = require("bcryptjs");
+const db = require("../database/queries");
 
 function loadMainPage(req, res) {
     res.render("mainPage", {title : "HomePage"});
@@ -9,7 +11,8 @@ function loadSignUp(req, res){
     res.render("signUp", {title : "Sign Up Page"});
 }
 
-const registerUser = [validateUser, (req,res) => {
+const registerUser = [validateUser, async (req,res) => {
+
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).render("signUp", {
@@ -18,6 +21,7 @@ const registerUser = [validateUser, (req,res) => {
       });
     }
     const { firstName, lastName, userName, password, confirmPassword} = matchedData(req);
+    const hashedPassword = await bcrypt.hash(password, 10);
     //usersStorage.addUser({ firstName, lastName });
     res.redirect("/");
 
