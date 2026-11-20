@@ -9,7 +9,23 @@ async function registerUser(firstName, lastName, userName, password){
 async function acceptedMember(){
 }
 
+async function getUserInfoWithUsername(username){
+    const {rows} = await pool.query("SELECT * FROM users WHERE username = $1", [username]);
+    const user = rows[0];
+
+    return user;
+}
+
+async function getUserInfoWithID(id){
+    const {rows} = await pool.query("SELECT * FROM users WHERE userid = $1", [id]);
+    const user = rows[0];
+
+    return user;
+}
+
 module.exports = {
     registerUser,
-    acceptedMember
+    acceptedMember,
+    getUserInfoWithUsername,
+    getUserInfoWithID
 };

@@ -5,7 +5,7 @@ const assetsPath = path.join(__dirname, "public");
 const indexRouter = require("./routes/indexRouter");
 const session = require("express-session");
 const passport = require("passport");
-const LocalStrategy = require('passport-local').Strategy;
+require("./config/passport");
 
 app.set("views", path.join(__dirname,"views"));
 app.set("view engine", "ejs");
