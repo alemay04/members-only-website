@@ -35,10 +35,23 @@ function loadMember(req, res){
     res.render("memberPage", {title : "Member?"});
 }
 
+async function acceptMember(req, res){
+    if (req.body.password == "fidelio"){
+        console.log("accepted");
+        //await db.acceptedMember()
+        //res.render()
+    }
+    else{
+        console.log("refused");
+    }
+    loadMember(req,res);
+}
+
 module.exports = {
     loadMainPage,
     loadSignUp,
     loadLogin,
     loadMember,
-    registerUser
+    registerUser,
+    acceptMember
 };

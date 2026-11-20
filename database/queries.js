@@ -6,6 +6,10 @@ async function registerUser(firstName, lastName, userName, password){
     );
 }
 
+async function acceptedMember(){
+}
+
 module.exports = {
-    registerUser
+    registerUser,
+    acceptedMember
 };

@@ -10,5 +10,6 @@ indexRouter.get("/login", indexController.loadLogin);
 indexRouter.get("/member", indexController.loadMember);
 
 indexRouter.post("/signup", indexController.registerUser);
+indexRouter.post("/member", indexController.acceptMember);
 
 module.exports = indexRouter;
