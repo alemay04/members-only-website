@@ -18,6 +18,9 @@
     <main>
         
         <h1><%= title %></h1>
+        <% if (locals.user){ %>
+            <h2> Welcome back <%= user.username %></h2>
+        <% } %>
         <section>
         </section>
     </main>

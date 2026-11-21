@@ -1,9 +1,9 @@
+//indexRouter.js
 const {Router} = require("express");
 const indexRouter = Router();
 const indexController = require("../controllers/indexController");
 const { body, validationResult } = require("express-validator");
 const passport = require("passport");
-
 
 indexRouter.get("/", indexController.loadMainPage);
 indexRouter.get("/signup", indexController.loadSignUp);

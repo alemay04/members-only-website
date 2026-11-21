@@ -1,3 +1,4 @@
+// app.js
 const express = require("express");
 const path = require("node:path");
 const app = express();
@@ -12,7 +13,10 @@ app.set("view engine", "ejs");
 
 app.use(express.static(assetsPath));
 app.use(express.urlencoded({extended: false}));
+
 app.use(session({ secret: "cats", resave: false, saveUninitialized: false }));
+
+app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/", indexRouter);

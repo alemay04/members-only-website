@@ -1,14 +1,15 @@
+//indexController.js
 const { body, validationResult, matchedData } = require("express-validator");
 const {validateUser} = require("../controllers/validationCriterias/signUpValidator");
 const bcrypt = require("bcryptjs");
 const db = require("../database/queries");
 
 function loadMainPage(req, res) {
-    res.render("mainPage", {title : "HomePage"});
+    res.render("mainPage", {title : "HomePage", user: req.user});
 }
 
 function loadSignUp(req, res){
-    res.render("signUp", {title : "Sign Up Page"});
+    res.render("signUp", {title : "Sign Up Page", formData : {}});
 }
 
 const registerUser = [validateUser, async (req,res) => {
@@ -18,6 +19,7 @@ const registerUser = [validateUser, async (req,res) => {
       return res.status(400).render("signUp", {
         title: "Sign Up Page",
         errors: errors.array(),
+        formData : req.body,
       });
     }
     const {firstName, lastName, userName, password} = matchedData(req);

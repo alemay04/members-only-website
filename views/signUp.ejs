@@ -1,4 +1,4 @@
-<!-- views/mainPage.ejs -->
+<!-- views/signUp.ejs -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -21,13 +21,13 @@
             <%- include("partials/errors.ejs") %>
             <form action="/signup" method="post" class="signUp_registration">
                 <label for="firstName">First Name</label>
-                <input type="text" name="firstName" id="firstName">
+                <input type="text" name="firstName" id="firstName" value="<%= formData?.firstName || '' %>">
 
                 <label for="lastName">Last Name</label>
-                <input type="text" name="lastName" id="lastName">
+                <input type="text" name="lastName" id="lastName" value="<%= formData?.lastName || '' %>">
 
                 <label for="userName">Username</label>
-                <input type="text" name="userName" id="userName">
+                <input type="text" name="userName" id="userName" value="<%= formData?.userName || '' %>">
 
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password">

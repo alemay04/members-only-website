@@ -1,3 +1,4 @@
+//queries.js
 const pool = require("./pool");
 
 async function registerUser(firstName, lastName, userName, password){

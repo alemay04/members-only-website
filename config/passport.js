@@ -1,10 +1,11 @@
+//passport.js
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const db = require("../database/queries");
 const bcrypt = require("bcryptjs");
 
 passport.use(
-  new LocalStrategy(async (username, password, done) => {
+  new LocalStrategy(async (username, password, done) => { // le nom des variable semble avoir de l'importance car localStrategy cherche req.body.password et req.body.username
     try {
       const user = await db.getUserInfoWithUsername(username);
 
@@ -18,7 +19,8 @@ passport.use(
         return done(null, false, { message: "Incorrect password" });
       }
       return done(null, user);
-    } catch(err) {
+    } 
+    catch(err) {
       return done(err);
     }
   })
@@ -33,7 +35,8 @@ passport.deserializeUser(async (id, done) => {
     const user = await db.getUserInfoWithID(id);
 
     done(null, user);
-  } catch(err) {
+  } 
+  catch(err) {
     done(err);
   }
 });
