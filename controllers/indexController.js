@@ -5,6 +5,7 @@ const bcrypt = require("bcryptjs");
 const db = require("../database/queries");
 
 function loadMainPage(req, res) {
+    console.log(req.user);
     res.render("mainPage", {title : "HomePage", user: req.user});
 }
 
@@ -49,11 +50,21 @@ async function acceptMember(req, res){
     loadMember(req,res);
 }
 
+function loginOut(req, res, next){
+    req.logout((err)=>{
+        if(err){
+            return next(err);
+        }
+        res.redirect("/");
+    }); 
+}
+
 module.exports = {
     loadMainPage,
     loadSignUp,
     loadLogin,
     loadMember,
     registerUser,
-    acceptMember
+    acceptMember,
+    loginOut
 };
