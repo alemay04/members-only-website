@@ -7,7 +7,10 @@ async function registerUser(firstName, lastName, userName, password){
     );
 }
 
-async function acceptedMember(){
+async function acceptedMember(id){
+    await pool.query(
+        "UPDATE users SET member_ship_status = 'user' WHERE userid = $1", [id]
+    );
 }
 
 async function getUserInfoWithUsername(username){

@@ -5,8 +5,7 @@ const bcrypt = require("bcryptjs");
 const db = require("../database/queries");
 
 function loadMainPage(req, res) {
-    console.log(req.user);
-    res.render("mainPage", {title : "HomePage", user: req.user});
+    res.render("mainPage", {title : "HomePage"});
 }
 
 function loadSignUp(req, res){
@@ -26,7 +25,7 @@ const registerUser = [validateUser, async (req,res) => {
     const {firstName, lastName, userName, password} = matchedData(req);
     const hashedPassword = await bcrypt.hash(password, 10);
     await db.registerUser(firstName, lastName, userName, hashedPassword);
-    res.redirect("/");
+    res.redirect("/login");
 
 }];
 
@@ -40,14 +39,13 @@ function loadMember(req, res){
 
 async function acceptMember(req, res){
     if (req.body.password == "fidelio"){
-        console.log("accepted");
-        //await db.acceptedMember()
-        //res.render()
+        const userId = req.user.userid;
+        await db.acceptedMember(userId)
+        res.redirect("/");
     }
     else{
-        console.log("refused");
+        res.redirect("/member");
     }
-    loadMember(req,res);
 }
 
 function loginOut(req, res, next){
