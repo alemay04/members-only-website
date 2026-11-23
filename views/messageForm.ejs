@@ -1,0 +1,42 @@
+<!-- views/messageForm.ejs -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+<body>
+    <header>
+        <a href="/"><h1>Club2Secret</h1></a>
+        
+        <div class="right_header_section">
+            <% if (currentUser){ %>
+            <h2>Hi, <%= currentUser.username %> </h2>
+            <% if (currentUser.member_ship_status == 'non-user') { %>
+            <a href="/member">Member?</a>
+            <% } %>
+            <a href="/message">Post a message !</a>
+            <a href="/logout">Log Out</a>
+            <% } else { %>
+                <a href="/signup">Sign Up</a>
+                <a href="/login">Login</a>
+            <% } %>
+        </div>
+    </header>
+    <main>
+        <h1><%= title %></h1>
+        <section messageForm>
+            <%- include("partials/errors.ejs") %>
+            <form action="/message" method="post" class="message-form">
+                <label for="title">Post Title</label>
+                <input type="text" name="title" id="title">
+
+                <label for="message">Write Your Post Message here (min:3, max:250)</label>
+                <textarea name="message" id="message" rows="4" cols="50"></textarea>
+
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

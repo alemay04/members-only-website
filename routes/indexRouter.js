@@ -10,6 +10,7 @@ indexRouter.get("/signup", indexController.loadSignUp);
 indexRouter.get("/login", indexController.loadLogin);
 indexRouter.get("/member", indexController.loadMember);
 indexRouter.get("/logout", indexController.loginOut);
+indexRouter.get("/message", indexController.loadMessageForm);
 
 indexRouter.post("/signup", indexController.registerUser);
 indexRouter.post("/member", indexController.acceptMember);

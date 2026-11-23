@@ -112,7 +112,8 @@ main h1 {
 /* -------------------- */
 
 .signUp_registration,
-.login {
+.login,
+.message-form {
     display: flex;
     flex-direction: column;
     width: 400px;
@@ -126,15 +127,18 @@ main h1 {
 }
 
 .signUp_registration input,
-.login input {
+.login input,
+.message-form input, .message-form textarea {
     padding: 0.75rem;
     font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
+    resize: none;
 }
 
 .signUp_registration button,
-.login button {
+.login button,
+.message-form button {
     margin-top: 1rem;
     padding: 0.75rem;
     font-size: 1rem;
@@ -149,6 +153,17 @@ main h1 {
 }
 
 .signUp_registration button:hover,
-.login button:hover {
+.login button:hover,
+.message-form button:hover {
     background-color: #0052a3;
+}
+
+/* ==========================================
+   MESSAGE PAGE
+   ========================================== */
+
+.messageForm {
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }

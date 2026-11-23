@@ -57,6 +57,10 @@ function loginOut(req, res, next){
     }); 
 }
 
+function loadMessageForm(req, res){
+    res.render("messageForm", {title : "Message Form Page"});
+}
+
 module.exports = {
     loadMainPage,
     loadSignUp,
@@ -64,5 +68,6 @@ module.exports = {
     loadMember,
     registerUser,
     acceptMember,
-    loginOut
+    loginOut,
+    loadMessageForm
 };
