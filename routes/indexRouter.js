@@ -2,7 +2,6 @@
 const {Router} = require("express");
 const indexRouter = Router();
 const indexController = require("../controllers/indexController");
-const { body, validationResult } = require("express-validator");
 const passport = require("passport");
 
 indexRouter.get("/", indexController.loadMainPage);
@@ -20,5 +19,6 @@ indexRouter.post("/login",
     failureRedirect: "/login",
     failureMessage: true,
   }))
+indexRouter.post("/message", indexController.registerMessage);
 
 module.exports = indexRouter;

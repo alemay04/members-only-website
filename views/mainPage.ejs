@@ -24,12 +24,37 @@
         </div>
     </header>
     <main>
-        
-        <h1><%= title %></h1>
-        <% if (locals.user){ %>
-            <h2> Welcome back <%= user.username %></h2>
-        <% } %>
         <section>
+
+        <h1><%= title %></h1>
+
+        <%
+        const isMember =
+        currentUser &&
+        currentUser.member_ship_status === "user";
+        %>
+
+        <% messages.forEach(message => { %>
+            <div class="message-post">
+                <div class="message-header">
+                    <h3>
+                        <%= message.title %>
+                    </h3>
+                    <p>
+                        <%= isMember === "user"? message.username : "******" %>
+                    </p>
+
+                    <p>
+                        <%= isMember === "user"? message.timestamp : "****/**/**" %>
+                    </p>
+                </div>
+
+                <div class="message-content">
+                    <p><%= message.description %></p>
+                </div>
+            </div>
+        <% }); %>
+
         </section>
     </main>
 </body>

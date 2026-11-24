@@ -4,8 +4,10 @@ const {validateUser} = require("../controllers/validationCriterias/signUpValidat
 const bcrypt = require("bcryptjs");
 const db = require("../database/queries");
 
-function loadMainPage(req, res) {
-    res.render("mainPage", {title : "HomePage"});
+async function loadMainPage(req, res) {
+    const messages = await db.getAllMessages();
+
+    res.render("mainPage", {title : "HomePage", messages : messages});
 }
 
 function loadSignUp(req, res){
@@ -61,6 +63,15 @@ function loadMessageForm(req, res){
     res.render("messageForm", {title : "Message Form Page"});
 }
 
+async function registerMessage(req, res){
+    const title = req.body.title;
+    const message = req.body.message;
+    const userId = req.user.userid;
+
+    await db.registerMessage(title, message, userId);
+    res.redirect("/");
+}
+
 module.exports = {
     loadMainPage,
     loadSignUp,
@@ -69,5 +80,6 @@ module.exports = {
     registerUser,
     acceptMember,
     loginOut,
-    loadMessageForm
+    loadMessageForm,
+    registerMessage
 };

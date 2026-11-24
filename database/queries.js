@@ -27,9 +27,24 @@ async function getUserInfoWithID(id){
     return user;
 }
 
+async function registerMessage(title, message, userId){
+    await pool.query(
+        "INSERT INTO message (userid, title, description) VALUES ($1, $2, $3)", [userId, title, message]
+    );
+}
+
+async function getAllMessages(){
+    const {rows} = await pool.query(
+        "SELECT message.title, message.timestamp, message.description, users.username FROM message JOIN users ON message.userid = users.userid"
+    );
+    return rows;
+}
+
 module.exports = {
     registerUser,
     acceptedMember,
     getUserInfoWithUsername,
-    getUserInfoWithID
+    getUserInfoWithID,
+    registerMessage,
+    getAllMessages
 };
