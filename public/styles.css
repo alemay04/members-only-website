@@ -167,3 +167,77 @@ main h1 {
     justify-content: center;
     width: 100%;
 }
+
+/* ==========================================
+   MESSAGE LIST
+   ========================================== */
+
+.message-section {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.message-section h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.message-post {
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 1.25rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.message-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.message-header h3 {
+    color: #0066cc;
+    margin-right: auto;
+}
+
+.message-header p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.message-content p {
+    line-height: 1.6;
+    word-break: break-word;
+}
+
+.message-delete-btn {
+    background-color: #dc2626;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
+
+    box-shadow: 0 2px 6px rgba(220, 38, 38, 0.25);
+}
+
+.message-delete-btn:hover {
+    background-color: #b91c1c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.35);
+}

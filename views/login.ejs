@@ -15,6 +15,9 @@
             <% if (currentUser.member_ship_status == 'non-user') { %>
             <a href="/member">Member?</a>
             <% } %>
+            <% if (currentUser.member_ship_status == 'user') { %>
+            <a href="/member">Admin?</a>
+            <% } %>
             <a href="/message">Post a message !</a>
             <a href="/logout">Log Out</a>
             <% } else { %>

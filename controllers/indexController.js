@@ -36,13 +36,18 @@ function loadLogin(req, res){
 }
 
 function loadMember(req, res){
-    res.render("memberPage", {title : "Member?"});
+    res.render("memberPage", {title : "Who are you ?"});
 }
 
 async function acceptMember(req, res){
     if (req.body.password == "fidelio"){
         const userId = req.user.userid;
         await db.acceptedMember(userId)
+        res.redirect("/");
+    }
+    else if(req.body.password == 'Sri Jayawardenapura Kotte'){
+        const userId = req.user.userid;
+        await db.acceptedAdmin(userId)
         res.redirect("/");
     }
     else{
@@ -72,6 +77,12 @@ async function registerMessage(req, res){
     res.redirect("/");
 }
 
+async function deleteMessage(req, res){
+    const id = req.params.id;
+    await db.deleteMessage(id);
+    res.redirect("/");
+}
+
 module.exports = {
     loadMainPage,
     loadSignUp,
@@ -81,5 +92,6 @@ module.exports = {
     acceptMember,
     loginOut,
     loadMessageForm,
-    registerMessage
+    registerMessage,
+    deleteMessage
 };

@@ -13,6 +13,12 @@ async function acceptedMember(id){
     );
 }
 
+async function acceptedAdmin(id){
+    await pool.query(
+        "UPDATE users SET member_ship_status = 'admin' WHERE userid = $1", [id]
+    );
+}
+
 async function getUserInfoWithUsername(username){
     const {rows} = await pool.query("SELECT * FROM users WHERE username = $1", [username]);
     const user = rows[0];
@@ -35,16 +41,22 @@ async function registerMessage(title, message, userId){
 
 async function getAllMessages(){
     const {rows} = await pool.query(
-        "SELECT message.title, message.timestamp, message.description, users.username FROM message JOIN users ON message.userid = users.userid"
+        "SELECT message.messageid, message.title, message.timestamp, message.description, users.username FROM message JOIN users ON message.userid = users.userid"
     );
     return rows;
+}
+
+async function deleteMessage(id){
+    await pool.query("DELETE FROM message WHERE messageid = $1",[id])
 }
 
 module.exports = {
     registerUser,
     acceptedMember,
+    acceptedAdmin,
     getUserInfoWithUsername,
     getUserInfoWithID,
     registerMessage,
-    getAllMessages
+    getAllMessages,
+    deleteMessage
 };

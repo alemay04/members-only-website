@@ -20,5 +20,6 @@ indexRouter.post("/login",
     failureMessage: true,
   }))
 indexRouter.post("/message", indexController.registerMessage);
+indexRouter.post("/delete/:id", indexController.deleteMessage);
 
 module.exports = indexRouter;

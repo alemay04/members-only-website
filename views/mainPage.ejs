@@ -15,6 +15,9 @@
             <% if (currentUser.member_ship_status == 'non-user') { %>
             <a href="/member">Member?</a>
             <% } %>
+            <% if (currentUser.member_ship_status == 'user') { %>
+            <a href="/member">Admin?</a>
+            <% } %>
             <a href="/message">Post a message !</a>
             <a href="/logout">Log Out</a>
             <% } else { %>
@@ -24,14 +27,19 @@
         </div>
     </header>
     <main>
-        <section>
+        <section class="message-section">
 
         <h1><%= title %></h1>
 
         <%
         const isMember =
         currentUser &&
-        currentUser.member_ship_status === "user";
+        (currentUser.member_ship_status === "user" || currentUser.member_ship_status === "admin") ;
+        %>
+        <%
+        const isAdmin =
+        currentUser &&
+        currentUser.member_ship_status === "admin";
         %>
 
         <% messages.forEach(message => { %>
@@ -40,13 +48,18 @@
                     <h3>
                         <%= message.title %>
                     </h3>
-                    <p>
-                        <%= isMember === "user"? message.username : "******" %>
-                    </p>
+                    <h4>
+                        <%= isMember? message.username : "******" %>
+                    </h4>
 
                     <p>
-                        <%= isMember === "user"? message.timestamp : "****/**/**" %>
+                        <%= isMember? new Date(message.timestamp).toLocaleString('fr-CA', {year: 'numeric',month: '2-digit',day: '2-digit',hour: '2-digit',minute: '2-digit'}) : "****/**/**" %>
                     </p>
+                    <% if (isAdmin) { %>
+                    <form action="/delete/<%= message.messageid %>" method="post">
+                        <button type="submit" class="message-delete-btn">delete</button>
+                    </form>
+                    <% } %>
                 </div>
 
                 <div class="message-content">
